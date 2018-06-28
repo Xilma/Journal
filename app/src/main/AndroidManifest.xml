@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/nav_home"></activity>
+            android:label="@string/nav_home"/>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
@@ -29,8 +29,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"
-            android:label="@string/action_sign_up"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/action_sign_up" />
+        <activity android:name=".SettingsActivity"
+            android:label="@string/nav_settings"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

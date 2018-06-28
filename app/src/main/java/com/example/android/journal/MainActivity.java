@@ -1,5 +1,6 @@
 package com.example.android.journal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -80,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             return true;
         }
+
+        if (id == R.id.action_settings) {
+            Intent logout = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(logout);
+            finish();
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
