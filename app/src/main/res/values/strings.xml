@@ -18,5 +18,6 @@
     <string name="image_description">Logo</string>
     <string name="newuser">New User? Click <u>here</u> to sign up</string>
     <string name="splash_text">Your Personal Journal</string>
+    <string name="logout">Logout</string>
 
 </resources>
