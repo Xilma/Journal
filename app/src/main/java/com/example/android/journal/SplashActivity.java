@@ -3,7 +3,6 @@ package com.example.android.journal;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -14,21 +13,17 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 
-        final int SPLASH_TIME_OUT = 4000;
+    public void emailSignIn(View view) {
+        Intent eLogin = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(eLogin);
+        finish();
+    }
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run(){
-                Intent login = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(login);
-                finish();
-            }
-        },SPLASH_TIME_OUT);
-
-        View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+    public void gmailSignIn(View view) {
+        Intent gLogin = new Intent(SplashActivity.this, GoogleLoginActivity.class);
+        startActivity(gLogin);
+        finish();
     }
 }
