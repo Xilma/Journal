@@ -73,7 +73,8 @@
                 android:text="@string/action_sign_up"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:visibility="visible"/>
+                android:visibility="visible"
+                android:onClick="registerUser"/>
 
             <TextView
                 android:id="@+id/signin_text"
@@ -90,7 +91,7 @@
 
             <!-- Login progress -->
             <ProgressBar
-                android:id="@+id/login_progress"
+                android:id="@+id/signup_progress"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

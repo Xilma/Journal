@@ -104,4 +104,13 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
+    <!--Strings related to Login/SignUp error messages-->
+    <string name="invalid_email_address">Please enter a valid email address</string>
+    <string name="password_required_error">Password is required</string>
+    <string name="password_length_error">Password should be a minimum of 8 characters</string>
+    <string name="email_required_error">Email is required</string>
+    <string name="success_message">User Registration Successful!</string>
+    <string name="failed_message">Authentication failed!</string>
+    <string name="user_exists">User already exists</string>
+
 </resources>

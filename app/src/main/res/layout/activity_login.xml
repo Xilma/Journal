@@ -78,7 +78,7 @@
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:visibility="visible"
-                android:onClick="signInEmail"/>
+                android:onClick="loginEmail"/>
 
             <TextView
                 android:id="@+id/signup_text"
