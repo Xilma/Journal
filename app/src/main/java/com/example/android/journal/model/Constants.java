@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.model;
 
 import android.provider.BaseColumns;
 

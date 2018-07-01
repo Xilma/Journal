@@ -1,12 +1,12 @@
-package com.example.android.journal;
+package com.example.android.journal.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.example.android.journal.Constants.DESCRIPTION;
-import static com.example.android.journal.Constants.TABLE_NAME;
-import static com.example.android.journal.Constants.TITLE;
+import static com.example.android.journal.model.Constants.DESCRIPTION;
+import static com.example.android.journal.model.Constants.TABLE_NAME;
+import static com.example.android.journal.model.Constants.TITLE;
 
 public class JournalData extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "journal.db";

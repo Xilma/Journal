@@ -12,20 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/nav_home" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".SplashActivity">
+            android:parentActivityName=".view.SplashActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SplashActivity" />
+                android:value=".view.SplashActivity" />
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:label="@string/welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,50 +34,50 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".view.SignUpActivity"
             android:label="@string/action_sign_up"
-            android:parentActivityName=".SplashActivity">
+            android:parentActivityName=".view.SplashActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SplashActivity" />
+                android:value=".view.SplashActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".view.SettingsActivity"
             android:label="@string/nav_settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".view.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".view.MainActivity" />
         </activity>
         <activity
-            android:name=".AddJournalActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".view.AddJournalActivity"
+            android:parentActivityName=".view.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".view.MainActivity" />
         </activity>
         <activity
-            android:name=".EditActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".view.EditActivity"
+            android:parentActivityName=".view.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".view.MainActivity" />
         </activity>
-        <activity android:name=".ViewActivity"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".view.ViewActivity"
+            android:parentActivityName=".view.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".view.MainActivity" />
         </activity>
     </application>
 

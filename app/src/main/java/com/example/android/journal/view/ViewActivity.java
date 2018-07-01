@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.view;
 
 import android.content.Intent;
 import android.database.SQLException;
@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static com.example.android.journal.Constants.DESCRIPTION;
-import static com.example.android.journal.Constants.TABLE_NAME;
-import static com.example.android.journal.Constants.TITLE;
+import com.example.android.journal.R;
+import com.example.android.journal.model.JournalData;
+
+import static com.example.android.journal.model.Constants.DESCRIPTION;
+import static com.example.android.journal.model.Constants.TABLE_NAME;
+import static com.example.android.journal.model.Constants.TITLE;
 
 public class ViewActivity extends AppCompatActivity {
 

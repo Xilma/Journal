@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.view;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.journal.R;
+import com.example.android.journal.model.JournalData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

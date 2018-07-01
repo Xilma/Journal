@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.view;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.android.journal.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

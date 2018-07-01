@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.presenters;
 
 public class RecyclerItem {
 

@@ -7,7 +7,7 @@
     android:padding="@dimen/activity_vertical_margin"
     android:background="@color/colorText"
     android:layout_height="match_parent"
-    tools:context=".EditActivity">
+    tools:context=".view.EditActivity">
 
     <EditText
         android:id="@+id/journal_title"

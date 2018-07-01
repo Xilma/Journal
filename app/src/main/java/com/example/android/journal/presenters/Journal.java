@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.presenters;
 
 public class Journal {
     private String title, description;

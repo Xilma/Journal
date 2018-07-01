@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.view;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,12 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.android.journal.R;
+import com.example.android.journal.model.JournalData;
+import com.example.android.journal.presenters.JournalAdapter;
+import com.example.android.journal.presenters.RecyclerItem;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.android.journal.Constants.TABLE_NAME;
+import static com.example.android.journal.model.Constants.TABLE_NAME;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;

@@ -1,4 +1,4 @@
-package com.example.android.journal;
+package com.example.android.journal.presenters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.android.journal.view.EditActivity;
+import com.example.android.journal.R;
+import com.example.android.journal.view.ViewActivity;
 
 import java.util.List;
 
