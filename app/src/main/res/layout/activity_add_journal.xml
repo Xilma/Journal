@@ -34,7 +34,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginBottom="@dimen/layout_margin_bottom"
-            android:scrollHorizontally="false"/>
+            android:imeOptions="flagNoExtractUi"/>
     </ScrollView>
 
 
