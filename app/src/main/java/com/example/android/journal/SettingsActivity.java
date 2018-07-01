@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         inputEmail = findViewById(R.id.email_recover);
-        Button sendButton = findViewById(R.id.save_button);
+        Button sendButton = findViewById(R.id.send_button);
         Button deleteButton = findViewById(R.id.delete_button);
         auth = FirebaseAuth.getInstance();
         journalData = new JournalData(this);

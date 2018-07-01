@@ -66,6 +66,9 @@ public class AddJournalActivity extends AppCompatActivity {
                 return false;
             } else{
                 Toast.makeText( AddJournalActivity.this, "Data Inserted", Toast.LENGTH_LONG ).show();
+                Intent main = new Intent(AddJournalActivity.this, MainActivity.class);
+                startActivity(main);
+                finish();
                 return true;
             }
 

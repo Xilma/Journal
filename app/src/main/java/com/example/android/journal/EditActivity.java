@@ -69,6 +69,9 @@ public class EditActivity extends AppCompatActivity {
         try{
             db.update(TABLE_NAME, values, TITLE + "= ?", params);
             Toast.makeText( EditActivity.this, "Journal Updated", Toast.LENGTH_LONG ).show();
+            Intent main = new Intent (EditActivity.this, MainActivity.class);
+            startActivity(main);
+            finish();
         }catch(SQLException e){
             String message = e.getMessage();
             Toast.makeText( EditActivity.this, message, Toast.LENGTH_LONG ).show();

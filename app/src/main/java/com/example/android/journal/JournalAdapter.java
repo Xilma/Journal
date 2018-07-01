@@ -1,6 +1,5 @@
 package com.example.android.journal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
@@ -55,12 +54,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
                                 Intent edit = new Intent (mContext, EditActivity.class);
                                 edit.putExtra("Title", titleEdit);
                                 edit.putExtra("Description", descriptionEdit);
-
-                                Toast.makeText(mContext, R.string.edit, Toast.LENGTH_LONG).show();
-
-                                ((Activity) mContext).setResult(((Activity) mContext).RESULT_OK,
-                                        edit);
-                                ((Activity) mContext).finish();
+                                mContext.startActivity(edit);
                                 break;
 
                             case R.id.item_delete:
