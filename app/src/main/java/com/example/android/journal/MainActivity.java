@@ -78,11 +78,10 @@ public class MainActivity extends AppCompatActivity {
             String description = cursor.getString(1);
 
             listItems.add(new RecyclerItem(title, description));
+            //Set adapter
+            JournalAdapter adapter = new JournalAdapter(listItems, this);
+            recyclerView.setAdapter(adapter);
         }
-
-        //Set adapter
-        JournalAdapter adapter = new JournalAdapter(listItems, this);
-        recyclerView.setAdapter(adapter);
     }
 
     @Override
