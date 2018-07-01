@@ -13,7 +13,7 @@ public class JournalData extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     //Create a helper object for the Journal database
-    JournalData(Context con){
+    public JournalData(Context con){
         super(con, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
