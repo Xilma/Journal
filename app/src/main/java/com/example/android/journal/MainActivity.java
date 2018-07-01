@@ -1,6 +1,9 @@
 package com.example.android.journal;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -9,19 +12,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.android.journal.Constants.TABLE_NAME;
 
 public class MainActivity extends AppCompatActivity {
-
-    private RecyclerView mRecyclerView;
-    private JournalAdapter mJournalAdapter;
-
+    private RecyclerView recyclerView;
+    private List<RecyclerItem> listItems;
+    private JournalData journalData;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listItems = new ArrayList<>();
+        journalData = new JournalData(this);
+        cursor = null;
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,36 +49,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_journal);
+        populateViews();
 
-        /*
-         * LinearLayoutManager can support HORIZONTAL or VERTICAL orientations. The reverse layout
-         * parameter is useful mostly for HORIZONTAL layouts that should reverse for right to left
-         * languages.
-         */
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //Set the layout manager on the recycler view
-        mRecyclerView.setLayoutManager(layoutManager);
+    }
 
-        //Use setHasFixedSize(true) on mRecyclerView to designate that all items in the list will have the same size
-        /*
-         * Use this setting to improve performance if you know that changes in content do not
-         * change the child layout size in the RecyclerView
-         */
-        mRecyclerView.setHasFixedSize(true);
+    public void populateViews(){
+        /*Perform a managed query. The Activity will handle closing and
+        re-querying the cursor when needed.*/
+        SQLiteDatabase db = journalData.getReadableDatabase();
 
-        //Set mJournalAdapter equal to a new JournalAdapter
-        /*
-         * The JournalAdapter is responsible for linking the journal data with the Views that
-         * will end up displaying the journal data.
-         */
-        mJournalAdapter = new JournalAdapter();
+        //Use of raw query to collect data
+        try{
+            cursor = db.rawQuery(" select * from " + TABLE_NAME, null);
+            showJournals(cursor);
+        }catch(SQLException e){
+            String message = e.getMessage();
+            Toast.makeText( MainActivity.this, message, Toast.LENGTH_LONG ).show();
+        }finally{
+            cursor.close();
+            journalData.close();
+        }
+    }
 
-        //Use mRecyclerView.setAdapter and pass in mJournalAdapter
-        /* Setting the adapter attaches it to the RecyclerView in our layout. */
-        mRecyclerView.setAdapter(mJournalAdapter);
+    //Displaying the query results
+    private void showJournals(Cursor cursor){
+        while(cursor.moveToNext()){
+            String title = cursor.getString(0);
+            String description = cursor.getString(1);
 
+            listItems.add(new RecyclerItem(title, description));
+        }
+
+        //Set adapter
+        JournalAdapter adapter = new JournalAdapter(listItems, this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -79,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, SplashActivity.class));
+            finish();
             return true;
         }
 
@@ -92,6 +117,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

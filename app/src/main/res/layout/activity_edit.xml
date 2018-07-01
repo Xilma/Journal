@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="@dimen/activity_vertical_margin"
     android:background="@color/colorText"
     android:layout_height="match_parent"
-    tools:context=".AddJournalActivity">
+    tools:context=".EditActivity">
 
     <EditText
         android:id="@+id/journal_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/journal_title"
-        android:inputType="text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:maxLines="1"
         android:singleLine="true"
@@ -28,27 +28,24 @@
         <EditText
             android:id="@+id/journal_paragraph"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
+            android:layout_height="match_parent"
             android:hint="@string/journal_paragraph"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/layout_margin_bottom"
-            android:scrollHorizontally="false"/>
+            android:layout_marginBottom="@dimen/layout_margin_bottom"/>
     </ScrollView>
 
 
     <Button
         android:id="@+id/save_button"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         style="@style/buttonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_margin_bottom"
         android:text="@string/save_button"
-        android:textStyle="bold"
-        tools:ignore="RelativeOverlap" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/discard_button"

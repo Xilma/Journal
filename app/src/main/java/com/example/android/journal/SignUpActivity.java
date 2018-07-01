@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -29,6 +31,8 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private Button signupButton;
+    private DatabaseReference ref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.sign_up_button_email);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
 
     }
 
@@ -125,5 +131,11 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         signinTextView.setVisibility(View.GONE);
         signupButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        SignUpActivity.this.finish();
     }
 }

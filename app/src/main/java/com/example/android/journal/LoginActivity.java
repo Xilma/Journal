@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         showProgress();
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in is successful
                             Toast.makeText(LoginActivity.this, R.string.success_message,
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             Intent main = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(main);
                             finish();
@@ -109,10 +109,12 @@ public class LoginActivity extends AppCompatActivity {
                         // If sign in fails, display a message to the user.
                         else {
                               Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
-                                        Toast.LENGTH_SHORT).show();
+                                        Toast.LENGTH_LONG).show();
                             }
                         }
                 });
+
+
     }
 
     public void hideProgress(){
@@ -125,6 +127,12 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         newUserTextView.setVisibility(View.GONE);
         loginButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        LoginActivity.this.finish();
     }
 }
 

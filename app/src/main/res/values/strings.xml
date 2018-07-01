@@ -104,13 +104,25 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
-    <!--Strings related to Login/SignUp error messages-->
-    <string name="invalid_email_address">Please enter a valid email address</string>
-    <string name="password_required_error">Password is required</string>
-    <string name="password_length_error">Password should be a minimum of 8 characters</string>
-    <string name="email_required_error">Email is required</string>
-    <string name="success_message">User Registration Successful!</string>
-    <string name="failed_message">Authentication failed!</string>
-    <string name="user_exists">User already exists</string>
+    <!--Strings related to add journal activity-->
+    <string name="journal_title">Add Title</string>
+    <string name="journal_paragraph">Write down what you have in your mind</string>
+    <string name="save_button">Save</string>
+    <string name="discard_button">Discard</string>
+    <string name="delete_icon">Delete</string>
+    <string name="edit_icon">Edit</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="deleted">Journal deleted</string>
+    <string name="success_message">Login Successful</string>
+    <string name="user_exists">The user already exists</string>
+    <string name="data_insert_message">Journal added!</string>
+    <string name="error_message_insert">Failed to insert data!</string>
+    <string name="dismissed">Journal dismissed</string>
+    <string name="recover_password">Enter your email to reset you password</string>
+    <string name="send_button">Send</string>
+    <string name="prompt_reset_password"><u>Reset Password:</u></string>
+    <string name="prompt_delete_data"><u>Delete Data:</u></string>
+    <string name="warning_deleting_data">\tThis will delete all your data with no chance of recovery</string>
 
 </resources>

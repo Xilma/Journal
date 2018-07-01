@@ -2,6 +2,7 @@ package com.example.android.journal;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +15,15 @@ import static com.example.android.journal.Constants.DESCRIPTION;
 import static com.example.android.journal.Constants.TABLE_NAME;
 import static com.example.android.journal.Constants.TITLE;
 
-public class AddJournalActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity {
 
     private EditText editTitle, journalText;
     private JournalData journalData;
-    private Journal journal;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_journal);
+        setContentView(R.layout.activity_edit);
 
         journalData = new JournalData(this);
 
@@ -33,11 +32,18 @@ public class AddJournalActivity extends AppCompatActivity {
         Button saveButton = findViewById(R.id.save_button);
         Button discardButton = findViewById(R.id.discard_button);
 
+        Intent editIntent = getIntent();
+        String editHeading = editIntent.getStringExtra("Title");
+        String editParagraph = editIntent.getStringExtra("Description");
+
+        editTitle.setText(editHeading);
+        journalText.setText(editParagraph);
+
         discardButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(AddJournalActivity.this, R.string.dismissed, Toast.LENGTH_SHORT).show();
-                Intent main = new Intent (AddJournalActivity.this, MainActivity.class);
+                Toast.makeText(EditActivity.this, R.string.dismissed, Toast.LENGTH_SHORT).show();
+                Intent main = new Intent (EditActivity.this, MainActivity.class);
                 startActivity(main);
                 finish();
             }
@@ -46,34 +52,34 @@ public class AddJournalActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                addJournal();
+                updateData();
             }
         });
-
-        journal = new Journal();
     }
 
-    public boolean addJournal() {
-            SQLiteDatabase db = journalData.getWritableDatabase();
+    //method to update data to Journal database
+    public void updateData(){
+        SQLiteDatabase db = journalData.getWritableDatabase();
 
-            ContentValues values = new ContentValues();
-            values.put(TITLE, editTitle.getText().toString());
-            values.put(DESCRIPTION, journalText.getText().toString());
+        ContentValues values = new ContentValues();
+        values.put(TITLE, editTitle.getText().toString() );
+        values.put(DESCRIPTION, journalText.getText().toString() );
 
-            Long result = db.insertOrThrow(TABLE_NAME, null, values);
-            if (result == -1) {
-                Toast.makeText( AddJournalActivity.this, "Data NOT Inserted", Toast.LENGTH_LONG ).show();
-                return false;
-            } else{
-                Toast.makeText( AddJournalActivity.this, "Data Inserted", Toast.LENGTH_LONG ).show();
-                return true;
-            }
-
+        String[] params = new String[]{editTitle.getText().toString()};
+        try{
+            db.update(TABLE_NAME, values, TITLE + "= ?", params);
+            Toast.makeText( EditActivity.this, "Journal Updated", Toast.LENGTH_LONG ).show();
+        }catch(SQLException e){
+            String message = e.getMessage();
+            Toast.makeText( EditActivity.this, message, Toast.LENGTH_LONG ).show();
+        }finally{
+            journalData.close();
+        }
     }
 
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
-        AddJournalActivity.this.finish();
+        EditActivity.this.finish();
     }
 }

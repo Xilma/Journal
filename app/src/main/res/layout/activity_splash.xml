@@ -39,18 +39,14 @@
         android:visibility="visible"
         android:onClick="emailSignIn"/>
 
-    <Button
-        style="@style/buttonStyle"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
         android:layout_below="@+id/email_sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/sign_in_with_gmail"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:visibility="visible"
-        android:onClick="gmailSignIn"/>
+        />
 
 </RelativeLayout>
 
