@@ -124,5 +124,7 @@
     <string name="prompt_reset_password"><u>Reset Password:</u></string>
     <string name="prompt_delete_data"><u>Delete Data:</u></string>
     <string name="warning_deleting_data">\tThis will delete all your data with no chance of recovery</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="change_of_activity">Redirecting...</string>
 
 </resources>

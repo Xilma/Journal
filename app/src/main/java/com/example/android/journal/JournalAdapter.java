@@ -2,14 +2,15 @@ package com.example.android.journal;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,23 +24,35 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
         this.mContext = mContext;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.journal_list_item, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final RecyclerItem itemList = listItems.get(position);
         holder.txtTitle.setText(itemList.getTitle());
         holder.txtDescription.setText(itemList.getDescription());
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CharSequence titleEdit = holder.txtTitle.getText();
+                CharSequence descriptionEdit = holder.txtDescription.getText();
+
+                Intent viewJournal = new Intent (mContext, ViewActivity.class);
+                viewJournal.putExtra("Title", titleEdit);
+                viewJournal.putExtra("Description", descriptionEdit);
+                mContext.startActivity(viewJournal);
+            }
+        });
+
         holder.txtOptionDigit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Display option menu
-
                 PopupMenu popupMenu = new PopupMenu(mContext, holder.txtOptionDigit);
                 popupMenu.inflate(R.menu.option_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -57,12 +70,6 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
                                 mContext.startActivity(edit);
                                 break;
 
-                            case R.id.item_delete:
-                                //Delete item
-                                listItems.remove(position);
-                                notifyDataSetChanged();
-                                Toast.makeText(mContext, R.string.deleted, Toast.LENGTH_LONG).show();
-                                break;
                             default:
                                 break;
                         }
@@ -79,16 +86,19 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
         return listItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView txtTitle;
-        public TextView txtDescription;
-        public TextView txtOptionDigit;
-        public ViewHolder(View itemView) {
+        TextView txtTitle;
+        TextView txtDescription;
+        TextView txtOptionDigit;
+        LinearLayout parentLayout;
+
+        ViewHolder(View itemView) {
             super(itemView);
-            txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
-            txtDescription = (TextView) itemView.findViewById(R.id.txtDescription);
-            txtOptionDigit = (TextView) itemView.findViewById(R.id.txtOptionDigit);
+            txtTitle = itemView.findViewById(R.id.txtTitle);
+            txtDescription = itemView.findViewById(R.id.txtDescription);
+            txtOptionDigit = itemView.findViewById(R.id.txtOptionDigit);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 }

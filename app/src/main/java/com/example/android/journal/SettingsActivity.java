@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static com.example.android.journal.Constants.TABLE_NAME;
-
 public class SettingsActivity extends AppCompatActivity {
 
     private JournalData journalData;
@@ -67,8 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void deleteData(){
         SQLiteDatabase db = journalData.getWritableDatabase();
-        db.delete(TABLE_NAME,null,null);
-        db.execSQL("delete from "+ TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS TABLE_NAME");
         db.close();
     }
 

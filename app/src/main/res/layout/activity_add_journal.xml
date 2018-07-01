@@ -13,10 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/journal_title"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:maxLines="1"
-        android:singleLine="true"
+        android:textStyle="bold"
         android:layout_marginBottom="@dimen/layout_margin_bottom"/>
 
     <ScrollView
@@ -29,12 +28,10 @@
             android:id="@+id/journal_paragraph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:hint="@string/journal_paragraph"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/layout_margin_bottom"
-            android:imeOptions="flagNoExtractUi"/>
+            android:layout_marginBottom="@dimen/layout_margin_bottom"/>
     </ScrollView>
 
 

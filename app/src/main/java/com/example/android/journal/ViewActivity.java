@@ -1,6 +1,5 @@
 package com.example.android.journal;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +14,7 @@ import static com.example.android.journal.Constants.DESCRIPTION;
 import static com.example.android.journal.Constants.TABLE_NAME;
 import static com.example.android.journal.Constants.TITLE;
 
-public class EditActivity extends AppCompatActivity {
+public class ViewActivity extends AppCompatActivity {
 
     private EditText editTitle, journalText;
     private JournalData journalData;
@@ -23,14 +22,14 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_view);
 
         journalData = new JournalData(this);
 
         editTitle = findViewById(R.id.journal_title);
         journalText = findViewById(R.id.journal_paragraph);
-        Button saveButton = findViewById(R.id.save_button);
-        Button discardButton = findViewById(R.id.discard_button);
+        Button editButton = findViewById(R.id.edit_button);
+        Button deleteButton = findViewById(R.id.discard_button);
 
         Intent editIntent = getIntent();
         String editHeading = editIntent.getStringExtra("Title");
@@ -39,48 +38,31 @@ public class EditActivity extends AppCompatActivity {
         editTitle.setText(editHeading);
         journalText.setText(editParagraph);
 
-        discardButton.setOnClickListener(new View.OnClickListener(){
+        deleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 deleteData();
-                Toast.makeText(EditActivity.this, R.string.change_of_activity, Toast.LENGTH_LONG).show();
-                Intent main = new Intent (EditActivity.this, MainActivity.class);
+                Toast.makeText(ViewActivity.this, R.string.dismissed, Toast.LENGTH_LONG).show();
+                Intent main = new Intent (ViewActivity.this, MainActivity.class);
                 startActivity(main);
                 finish();
             }
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener(){
+        editButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                updateData();
+
+                CharSequence titleEdit = editTitle.getText();
+                CharSequence descriptionEdit = journalText.getText();
+
+                Intent editJournal = new Intent (ViewActivity.this, EditActivity.class);
+                editJournal.putExtra("Title", titleEdit);
+                editJournal.putExtra("Description", descriptionEdit);
+                startActivity(editJournal);
+                finish();
             }
         });
-    }
-
-    //method to update data to Journal database
-    public void updateData(){
-        SQLiteDatabase db = journalData.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(TITLE, editTitle.getText().toString() );
-        values.put(DESCRIPTION, journalText.getText().toString() );
-
-        String[] params = new String[]{editTitle.getText().toString()};
-        String[] params_one = new String[]{journalText.getText().toString()};
-        try{
-            db.update(TABLE_NAME, values, TITLE + "= ?", params);
-            db.update(TABLE_NAME, values, DESCRIPTION + "= ?", params_one);
-            Toast.makeText( EditActivity.this, "Journal Updated", Toast.LENGTH_LONG ).show();
-            Intent main = new Intent (EditActivity.this, MainActivity.class);
-            startActivity(main);
-            finish();
-        }catch(SQLException e){
-            String message = e.getMessage();
-            Toast.makeText( EditActivity.this, message, Toast.LENGTH_LONG ).show();
-        }finally{
-            journalData.close();
-        }
     }
 
     //method to delete data to Journal database
@@ -93,13 +75,13 @@ public class EditActivity extends AppCompatActivity {
             db.delete(TABLE_NAME, TITLE + "= ?", params);
             db.delete(TABLE_NAME, DESCRIPTION + "= ?", params_one);
 
-            Toast.makeText( EditActivity.this, "Journal Deleted", Toast.LENGTH_LONG ).show();
-            Intent main = new Intent (EditActivity.this, MainActivity.class);
+            Toast.makeText( ViewActivity.this, "Journal Deleted", Toast.LENGTH_LONG ).show();
+            Intent main = new Intent (ViewActivity.this, MainActivity.class);
             startActivity(main);
             finish();
         }catch(SQLException e){
             String message = e.getMessage();
-            Toast.makeText( EditActivity.this, message, Toast.LENGTH_LONG ).show();
+            Toast.makeText( ViewActivity.this, message, Toast.LENGTH_LONG ).show();
         }finally{
             journalData.close();
         }
@@ -109,6 +91,6 @@ public class EditActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
-        EditActivity.this.finish();
+        ViewActivity.this.finish();
     }
 }
